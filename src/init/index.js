@@ -1,5 +1,7 @@
 const addItems = document.querySelector(".add-items");
 const itemsList = document.querySelector(".plates");
+const clearAll = document.querySelector(".clear");
+
 const items = JSON.parse(localStorage.getItem("item")) || [];
 
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
@@ -42,7 +44,15 @@ function toggleDone(e) {
   populateList(items, itemsList);
 }
 
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+function clearItems() {
+  localStorage.removeItem("item");
+  window.location.reload();
+  return (itemsList.innerHTML = "");
+}
+
 addItems.addEventListener("submit", addItem);
 itemsList.addEventListener("click", toggleDone);
+clearAll.addEventListener("click", clearItems);
 
 populateList(items, itemsList);
